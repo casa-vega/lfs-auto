@@ -2,7 +2,7 @@ name: LFS Migration
 on:
   workflow_dispatch:
     inputs:
-      LFS files:
+      files:
         description: 'A comma seperated list of file extensions to convert to LFS (e.g. *.file1, *.file2)'     
         required: true
         default: ''
@@ -23,7 +23,7 @@ jobs:
 
       - name: LFS migration / import
         run: |
-          time git lfs migrate import --everything --include="{{ }}"
+          time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
 
       - name: expire reflog
         run: |
