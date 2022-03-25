@@ -24,6 +24,7 @@ jobs:
       - name: LFS migration / import
         run: |
           git checkout main
+          git fetch --all
           git pull --all
           time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
 
