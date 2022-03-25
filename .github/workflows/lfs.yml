@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       LFS files:
-        description: 'A comma seperated list of file extensions to covert to LFS (e.g. *.file1, *.file2)'     
+        description: 'A comma seperated list of file extensions to convert to LFS (e.g. *.file1, *.file2)'     
         required: true
         default: ''
 
