@@ -12,14 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Configure git
-        env:
-          TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-
-      - name: Clone
-        run: | 
-          git clone https://github.com/casa-vega/lfs-auto.git
+      - uses: actions/checkout@v2
           
       - name: Create local tracking branches
         run: | 
@@ -30,6 +23,8 @@ jobs:
 
       - name: LFS migration / import
         run: |
+          git checkout main
+          git pull --all
           time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
 
       - name: git expire reflog
