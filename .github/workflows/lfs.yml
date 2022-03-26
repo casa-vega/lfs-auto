@@ -54,5 +54,5 @@ jobs:
           done
       - name: Push verify
         run: |
-          git lfs push original --all
+          git lfs push origin --all
           git push origin --all
