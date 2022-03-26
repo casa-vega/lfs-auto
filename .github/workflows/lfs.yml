@@ -23,9 +23,7 @@ jobs:
 
       - name: LFS migration / import
         run: |
-          git checkout main
-          git fetch --all
-          git pull --all
+          git fetch --unshallow
           time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
 
       - name: git expire reflog
@@ -51,6 +49,6 @@ jobs:
               git checkout "${shortref}";
               git reset --hard;
               git clean -f -d;
-              time git lfs push origin "${shortref}" --all;
+              git fetch --unshallow
               time git push;
           done
