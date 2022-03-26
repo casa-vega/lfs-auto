@@ -55,4 +55,4 @@ jobs:
       - name: Push verify
         run: |
           git lfs push origin --all
-          git push origin --all
+          git push --force
