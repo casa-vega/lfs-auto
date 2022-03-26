@@ -58,7 +58,7 @@ jobs:
               git checkout "${shortref}";
               git reset --hard;
               git clean -f -d;
-              git push origin "${shortref}" --force;
+              git push origin --force;
           done
       - name: Push verify
         run: |
