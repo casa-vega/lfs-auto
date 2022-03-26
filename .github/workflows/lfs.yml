@@ -24,7 +24,7 @@ jobs:
       - name: LFS migration / import
         run: |
           git fetch --unshallow
-          time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
+          git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
 
       - name: git expire reflog
         run: |
@@ -48,9 +48,11 @@ jobs:
           for branch in $(git for-each-ref --shell --format="%(refname)" | sed "s@'@@g" | grep -v 'main\|HEAD'); do
               shortref=$(echo "${branch}" | sed 's@refs/remotes/origin/@@g');
               git checkout "${shortref}";
+              git fetch --all
+              git pull --all
               git reset --hard;
               git clean -f -d;
-              git push "${shortref}" origin --force;
+              git push origin "${shortref}" --force;
           done
       - name: Push verify
         run: |
