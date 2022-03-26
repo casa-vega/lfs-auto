@@ -25,6 +25,10 @@ jobs:
         run: |
           git fetch --unshallow
           time git lfs migrate import --everything --include="${{ github.event.inputs.files }}"
+          
+      - name: inspect .gitattributes file
+        run: |
+          cat .gitattributes
 
       - name: git expire reflog
         run: |
@@ -37,6 +41,10 @@ jobs:
       - name: Push LFS files to origin
         run: |
           git lfs push origin --all
+          
+      - name: Force push default branch
+        run: |
+          git push origin --force
       
       # in theory we could push --all however any issues that surface could be branch related 
       # and in my experience while it's a little quicker to try everything, any failure will 
@@ -55,4 +63,4 @@ jobs:
       - name: Push verify
         run: |
           git lfs push origin --all
-          git push --force
+          git push origin --all
