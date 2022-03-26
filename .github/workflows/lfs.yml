@@ -28,15 +28,15 @@ jobs:
 
       - name: git expire reflog
         run: |
-          time git reflog expire --expire=now --all
+          git reflog expire --expire=now --all
           
       - name: git garbage collect / aggressive
         run: |
-          time git gc --prune=now --aggressive
+          git gc --prune=now --aggressive
           
       - name: Push LFS files to origin
         run: |
-          time git lfs push origin --all
+          git lfs push origin --all
       
       # in theory we could push --all however any issues that surface could be branch related 
       # and in my experience while it's a little quicker to try everything, any failure will 
