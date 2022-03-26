@@ -52,3 +52,7 @@ jobs:
               git clean -f -d;
               time git push;
           done
+      - name: Push verify
+        run: |
+          git lfs push original --all
+          git push origin --all
