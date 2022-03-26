@@ -50,7 +50,7 @@ jobs:
               git checkout "${shortref}";
               git reset --hard;
               git clean -f -d;
-              time git push;
+              time git push --force;
           done
       - name: Push verify
         run: |
